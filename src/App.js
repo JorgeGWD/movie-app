@@ -15,6 +15,12 @@ function App() {
     const search = (e) => {
         if(e.key === "Enter") {
             axios(apiurl + "&s=" + state.s).then(({ data }) => {
+                let resutls = data.Search
+
+                setState(prevState => {
+                    return { ...prevState, results: results}
+                })
+
                 console.log(data)
             })
         }
@@ -27,7 +33,7 @@ function App() {
             return { ...prevState, s: s}
         })
 
-        console.log(state.s)
+        // console.log(state.s)
     }
     
     return (
