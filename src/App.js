@@ -18,14 +18,12 @@ function App() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const request = await axios.get(apiURL + apiKEY + "&s=" + 'batman')
+            const request = await axios.get(apiURL + apiKEY + "&s=batman")
             let results = request.data.Search
 
             setState(prevState => {
                 return { ...prevState, results: results}
             })
-
-            // console.log(request)
         }
 
         fetchData()
@@ -43,11 +41,9 @@ function App() {
                 })
             } else {
                 setState(prevState => {
-                    return { ...prevState, results: results, error: ''}
+                    return { ...prevState, results: results, error: '', value: ''}
                 })
             }
-
-        console.log(results)
     }
 
     const handleInput = (e) => {
@@ -56,8 +52,6 @@ function App() {
         setState(prevState => {
             return { ...prevState, value }
         })
-
-        // console.log(state.value)
     }
     
     return (
@@ -66,7 +60,7 @@ function App() {
                 <h1>Movie App</h1>
             </header>
             <main>
-                <Search handleInput={handleInput} handleSubmit={handleSubmit} />
+                <Search handleInput={handleInput} handleSubmit={handleSubmit} value={state.value} />
                 <ResultList results={state.results} error={state.error} />
             </main>
         </div>
