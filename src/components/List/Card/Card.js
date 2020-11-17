@@ -3,8 +3,10 @@ import React from 'react'
 function Result ({ result }) {
     return (
         <div className="result">
-            <img src={result.Poster} />
-            <h3>{result.Title}</h3>
+            <div className="card">
+                <img src={result.Poster} alt={result.Title} />
+                <h3>{result.Title}</h3>
+            </div>
         </div>
     )
 }

@@ -1,41 +1,59 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Search from './components/Serarch/Search'
-import Results from './components/List/List'
+import ResultList from './components/List/ResultList'
 
 function App() {
 
     const [ state, setState ] = useState({
-        s: '',
+        value: '',
         results: [],
         selected: {}
     })
 
-    const apiurl = 'http://www.omdbapi.com/?apiKey=ee4cc885'
+    const [ movie, setMovies ] = useState([])
+
+    const apiURL = 'http://www.omdbapi.com/?'
+
+    const apiKEY = '&apiKey=ee4cc885'
 
     const search = (e) => {
         if(e.key === "Enter") {
-            axios(apiurl + "&s=" + state.s).then(({ data }) => {
+            axios(apiURL + apiKEY + "&s=" + state.value).then(({ data }) => {
                 let results = data.Search
 
                 setState(prevState => {
                     return { ...prevState, results: results}
                 })
 
-                console.log(data)
+                console.log(data.Search)
             })
-        }
+        } 
     }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const request = await axios.get(apiURL + apiKEY + "&s=" + state)
+
+            setMovies(request.data.Search)
+
+            console.log(request.data.Search)
+        }
+
+        fetchData()
+    }, [])
 
     const handleInput = (e) => {
-        let s = e.target.value
+        let value = e.target.value
 
         setState(prevState => {
-            return { ...prevState, s: s}
+            return { ...prevState, value }
         })
 
-        // console.log(state.s)
+        // console.log(state.value)
     }
+
+    //const currentMovies = movie.filter(movie => movie.Year === "2020")
     
     return (
         <div className="App">
@@ -44,7 +62,7 @@ function App() {
             </header>
             <main>
                 <Search handleInput={handleInput} search={search} />
-                <Results results={state.results} />
+                <ResultList movie={movie} results={state.results} />
             </main>
         </div>
     );
