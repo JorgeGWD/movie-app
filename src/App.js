@@ -11,37 +11,37 @@ function App() {
         selected: {}
     })
 
-    const [ movie, setMovies ] = useState([])
-
     const apiURL = 'http://www.omdbapi.com/?'
 
     const apiKEY = '&apiKey=ee4cc885'
 
-    const search = (e) => {
-        if(e.key === "Enter") {
-            axios(apiURL + apiKEY + "&s=" + state.value).then(({ data }) => {
-                let results = data.Search
-
-                setState(prevState => {
-                    return { ...prevState, results: results}
-                })
-
-                console.log(data.Search)
-            })
-        } 
-    }
-
     useEffect(() => {
         const fetchData = async () => {
-            const request = await axios.get(apiURL + apiKEY + "&s=" + state)
+            const request = await axios.get(apiURL + apiKEY + "&s=" + 'batman')
+            let results = request.data.Search
 
-            setMovies(request.data.Search)
+            setState(prevState => {
+                return { ...prevState, results: results}
+            })
 
-            console.log(request.data.Search)
+            // console.log(request)
         }
 
         fetchData()
     }, [])
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        
+        const request = await axios.get(apiURL + apiKEY + "&s=" + state.value)
+            let results = request.data.Search
+
+            setState(prevState => {
+                return { ...prevState, results: results}
+            })
+
+        console.log(request)
+    }
 
     const handleInput = (e) => {
         let value = e.target.value
@@ -52,8 +52,6 @@ function App() {
 
         // console.log(state.value)
     }
-
-    //const currentMovies = movie.filter(movie => movie.Year === "2020")
     
     return (
         <div className="App">
@@ -61,8 +59,8 @@ function App() {
                 <h1>Movie App</h1>
             </header>
             <main>
-                <Search handleInput={handleInput} search={search} />
-                <ResultList movie={movie} results={state.results} />
+                <Search handleInput={handleInput} handleSubmit={handleSubmit} />
+                <ResultList results={state.results} />
             </main>
         </div>
     );
