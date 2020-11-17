@@ -7,6 +7,7 @@ function App() {
 
     const [ state, setState ] = useState({
         value: '',
+        loading: true,
         results: [],
         selected: {},
         error: ''
@@ -22,8 +23,10 @@ function App() {
             let results = request.data.Search
 
             setState(prevState => {
-                return { ...prevState, results: results}
+                return { ...prevState, loading: false, results: results}
             })
+
+            console.log(request.data.Search)
         }
 
         fetchData()
@@ -61,7 +64,7 @@ function App() {
             </header>
             <main>
                 <Search handleInput={handleInput} handleSubmit={handleSubmit} value={state.value} />
-                <ResultList results={state.results} error={state.error} />
+                <ResultList loading={state.loading} results={state.results} error={state.error} />
             </main>
         </div>
     );
