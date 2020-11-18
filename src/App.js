@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import Search from './components/Serarch/Search'
+//import Search from './components/Serarch/Search'
 import ResultList from './components/List/ResultList'
 
 function App() {
@@ -12,18 +12,22 @@ function App() {
         error: ''
     })
 
-    const apiURL = 'http://www.omdbapi.com/?'
+    const [ popularMovies, setPopularMovies ] = useState([])
 
-    const apiKEY = '&apiKey=ee4cc885'
+    const apiKEY = 'api_key=70b4fae10e1f2ae4e4fb74fc69dcbd73'
+
+    const apiURL = `https://api.themoviedb.org/3/movie/popular?${apiKEY}&language=en-US&page=3`
 
     useEffect(() => {
         const fetchData = async () => {
-            const request = await axios.get(apiURL + apiKEY + "&s=batman")
-            let results = request.data.Search
+            const request = await axios.get(apiURL)
+            let results = request.data.results
 
             setState(prevState => {
                 return { ...prevState, loading: false, results: results}
             })
+
+            console.log(results)
         }
 
         fetchData()
@@ -32,7 +36,7 @@ function App() {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const request = await axios.get(apiURL + apiKEY + "&s=" + state.value)
+        const request = await axios.get(apiURL)
             let results = request.data.Search
 
             if(!results || state.value === '') {
@@ -60,7 +64,7 @@ function App() {
                 <h1>Movie App</h1>
             </header>
             <main>
-                <Search handleInput={handleInput} handleSubmit={handleSubmit} value={state.value} />
+                {/*<Search handleInput={handleInput} handleSubmit={handleSubmit} value={state.value} />*/}
                 <ResultList loading={state.loading} results={state.results} error={state.error} />
             </main>
         </div>
