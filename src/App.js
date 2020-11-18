@@ -44,7 +44,7 @@ function App() {
                 })
             } else {
                 setState(prevState => {
-                    return { ...prevState, results: results, error: '', value: ''}
+                    return { ...prevState, loading: false, results: results, error: '', value: ''}
                 })
             }
     }
