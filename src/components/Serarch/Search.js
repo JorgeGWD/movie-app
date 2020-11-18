@@ -6,8 +6,8 @@ function Search({ handleInput, handleSubmit, value }) {
             <form onSubmit={handleSubmit}>
                 <div className="input-group">
                     <input type="text" className="form-control" placeholder="Search movie or series" onChange={handleInput} value={value} aria-describedby="button-addon4" />
-                    <div class="input-group-append" id="button-addon4">
-                        <button class="btn btn-primary" type="submit">Search</button>
+                    <div className="input-group-append" id="button-addon4">
+                        <button type="submit" className="btn btn-primary">Search</button>
                     </div>
                 </div>
             </form>
