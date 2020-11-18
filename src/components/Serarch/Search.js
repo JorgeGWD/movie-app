@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Search({ handleInput, handleSubmit, value }) {
+const Search = ({ handleInput, handleSubmit, value }) => {
     return (
         <section className="search-box">
             <form onSubmit={handleSubmit}>

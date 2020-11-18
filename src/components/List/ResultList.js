@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from './Card/Card'
 
-function ResultList ({ loading, results, error }) {
+const ResultList = ({ loading, results, error }) => {
     
     if (loading) {
         return <div>Loading...</div>;
@@ -12,9 +12,10 @@ function ResultList ({ loading, results, error }) {
             <p>{error ? error : ""}</p>
             <div className="row">
                 {results.map(result => (
-                    <Card result={result} key={result.imdbID}/>
+                    <Card result={result} key={result.imdbID} />
                 ))}
             </div>
+            
         </section>
     )
 }
