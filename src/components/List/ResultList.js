@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from './Card/Card'
+import Modal from './Modal/Modal'
 
 const ResultList = ({ loading, results, error }) => {
     
@@ -12,10 +13,12 @@ const ResultList = ({ loading, results, error }) => {
             <p>{error ? error : ""}</p>
             <div className="row">
                 {results.map(result => (
-                    <Card result={result} key={result.imdbID} />
+                    <div className="col-lg-3 col-md-4 col-sm-6 col-12" data-toggle="modal" data-target="#movieModal" key={result.imdbID} >
+                        <Card result={result} />
+                        <Modal result={result} />
+                    </div>
                 ))}
             </div>
-            
         </section>
     )
 }

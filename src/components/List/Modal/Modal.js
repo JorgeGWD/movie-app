@@ -7,12 +7,16 @@ const Modal = ({ result }) => {
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="movieModalLabel">{result.Title}</h5>
+                        <span>({result.Year})</span>
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                            <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div className="modal-body">
-                        <img className="card-img-top" src={result.Poster} alt={result.Title} />
+                        <div className="row">
+                            <img className="card-img-top col-lg-6" src={result.Poster} alt={result.Title} />
+                            <p className="col-lg-6">The Guardians struggle to keep together as a team while dealing with their personal family issues, notably Star-Lord's encounter with his father the ambitious celestial being Ego.</p>
+                        </div>
                     </div>
                 </div>
             </div>

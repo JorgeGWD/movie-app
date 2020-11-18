@@ -9,7 +9,6 @@ function App() {
         value: '',
         loading: true,
         results: [],
-        selected: {},
         error: ''
     })
 
@@ -25,8 +24,6 @@ function App() {
             setState(prevState => {
                 return { ...prevState, loading: false, results: results}
             })
-
-            console.log(request.data.Search)
         }
 
         fetchData()
