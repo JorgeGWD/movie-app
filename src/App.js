@@ -16,7 +16,7 @@ function App() {
 
     const apiURL = `https://api.themoviedb.org/3/movie/popular?${apiKEY}&language=en-US`
 
-    const searchURL = `https://api.themoviedb.org/3/search/movie?${apiKEY}&language=en-US&query=${state.value}`
+    const searchURL = `https://api.themoviedb.org/3/search/movie?${apiKEY}&language=en-US`
 
     useEffect(() => {
         const fetchData = async () => {
@@ -34,15 +34,12 @@ function App() {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const request = await axios.get(searchURL)
+        const request = await axios.get(searchURL + '&query=' + state.value)
             let results = request.data.results
 
-            console.log(results)
-
-
-            if(state.value.trim() === '') {
+            if(!results || state.value === '') {
                 setState(prevState => {
-                   return {...prevState, error: 'There are no results'}
+                    return {...prevState, error: 'There are no results'}
                 })
             } else {
                 setState(prevState => {

@@ -5,7 +5,7 @@ const Modal = ({ result }) => {
     const posterPATH = 'http://image.tmdb.org/t/p/w400/'
 
     return (
-        <div className="modal fade" id="movieModal" tabIndex="-1" aria-labelledby="movieModalLabel" aria-hidden="true">
+        <div className="modal fade" id={`movieModal_${result.id}`} tabIndex="-1" aria-labelledby="movieModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
