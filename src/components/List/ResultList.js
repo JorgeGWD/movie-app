@@ -13,7 +13,7 @@ const ResultList = ({ loading, results, error }) => {
             <p>{error ? error : ""}</p>
             <div className="row">
                 {results.map(result => (
-                    <div className="col-lg-3 col-md-4 col-sm-6 col-12" data-toggle="modal" data-target="#movieModal" key={result.imdb_id} >
+                    <div className="col-lg-3 col-md-4 col-sm-6 col-12" data-toggle="modal" data-target="#movieModal" key={result.id} >
                         <Card result={result} />
                         <Modal result={result} />
                     </div>

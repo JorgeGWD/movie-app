@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-//import Search from './components/Serarch/Search'
+import Search from './components/Serarch/Search'
 import ResultList from './components/List/ResultList'
 
 function App() {
@@ -12,11 +12,11 @@ function App() {
         error: ''
     })
 
-    const [ popularMovies, setPopularMovies ] = useState([])
-
     const apiKEY = 'api_key=70b4fae10e1f2ae4e4fb74fc69dcbd73'
 
-    const apiURL = `https://api.themoviedb.org/3/movie/popular?${apiKEY}&language=en-US&page=3`
+    const apiURL = `https://api.themoviedb.org/3/movie/popular?${apiKEY}&language=en-US`
+
+    const searchURL = `https://api.themoviedb.org/3/search/movie?${apiKEY}&language=en-US&query=${state.value}`
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,8 +26,6 @@ function App() {
             setState(prevState => {
                 return { ...prevState, loading: false, results: results}
             })
-
-            console.log(results)
         }
 
         fetchData()
@@ -36,10 +34,13 @@ function App() {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const request = await axios.get(apiURL)
-            let results = request.data.Search
+        const request = await axios.get(searchURL)
+            let results = request.data.results
 
-            if(!results || state.value === '') {
+            console.log(results)
+
+
+            if(state.value.trim() === '') {
                 setState(prevState => {
                    return {...prevState, error: 'There are no results'}
                 })
@@ -64,7 +65,7 @@ function App() {
                 <h1>Movie App</h1>
             </header>
             <main>
-                {/*<Search handleInput={handleInput} handleSubmit={handleSubmit} value={state.value} />*/}
+                <Search handleInput={handleInput} handleSubmit={handleSubmit} value={state.value} />
                 <ResultList loading={state.loading} results={state.results} error={state.error} />
             </main>
         </div>
