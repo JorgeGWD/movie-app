@@ -7,9 +7,6 @@ const Result = ({ result }) => {
     return (
         <div className="card">
             <img className="card-img-top" src={`${posterPATH}${result.poster_path}`} alt={result.title} />
-            <div className="card-body">
-                <h5 className="card-title">{result.title}</h5>
-            </div>
         </div>
     )
 }

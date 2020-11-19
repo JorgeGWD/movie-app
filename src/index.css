@@ -1,3 +1,7 @@
+.content {
+  margin-top: 60px;
+}
+
 .loading {
   width: 100%;
   padding: 20%;
@@ -5,5 +9,10 @@
 }
 
 .card {
+  margin: 20px 0px;
   cursor: pointer;
+}
+
+main {
+  padding: 20px 0px;
 }

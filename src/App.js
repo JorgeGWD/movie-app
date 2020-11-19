@@ -57,14 +57,18 @@ function App() {
     }
     
     return (
-        <div className="container">
-            <header className="App-header">
-                <h1>Movie App</h1>
+        <div>
+            <header className="fixed-top">
+                <nav className="navbar navbar-light bg-light">
+                    <span className="navbar-brand mb-0 h1" href="https://jorgegwd.github.io/movie-app/">Movie App</span>
+                    <Search handleInput={handleInput} handleSubmit={handleSubmit} value={state.value} />
+                </nav>
             </header>
-            <main>
-                <Search handleInput={handleInput} handleSubmit={handleSubmit} value={state.value} />
-                <ResultList loading={state.loading} results={state.results} error={state.error} />
-            </main>
+            <div className="container content">
+                <main>
+                    <ResultList loading={state.loading} results={state.results} error={state.error} />
+                </main>
+            </div>
         </div>
     );
 }
