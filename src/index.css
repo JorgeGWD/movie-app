@@ -11,7 +11,14 @@
 .card {
   margin: 20px 0px;
   cursor: pointer;
+  transition: all .2s;
 }
+
+.card:hover {
+  transform: scale(1.05);
+  transition: all .2s;
+}
+
 
 main {
   padding: 20px 0px;

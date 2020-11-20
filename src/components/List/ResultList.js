@@ -10,7 +10,7 @@ const ResultList = ({ loading, results, error }) => {
 
     return (
         <section>
-            <p>{error ? error : ""}</p>
+            {error ? <p className="alert alert-danger" role="alert">{error}</p> : ""}
             <div className="row">
                 {results.filter(result => result.poster_path).map(result => (
                     <div className="col-lg-3 col-md-4 col-sm-6 col-12" data-toggle="modal" data-target={`#movieModal_${result.id}`} key={result.id} >

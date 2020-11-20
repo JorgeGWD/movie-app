@@ -37,9 +37,11 @@ function App() {
         const request = await axios.get(searchURL + '&query=' + state.value)
             let results = request.data.results
 
-            if(!results || state.value === '') {
+            console.log(state.value)
+
+            if (results.length === 0 || state.value === '') {
                 setState(prevState => {
-                    return {...prevState, error: 'There are no results'}
+                    return {...prevState, error: 'Please enter a valid term.'}
                 })
             } else {
                 setState(prevState => {
