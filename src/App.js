@@ -62,7 +62,7 @@ function App() {
         <div>
             <header className="fixed-top">
                 <nav className="navbar navbar-light bg-light">
-                    <span className="navbar-brand mb-0 h1" href="https://jorgegwd.github.io/movie-app/">Movie App</span>
+                    <span className="navbar-brand mb-0 h1"><a href="https://jorgegwd.github.io/movie-app/">Movie App</a></span>
                     <Search handleInput={handleInput} handleSubmit={handleSubmit} value={state.value} />
                 </nav>
             </header>
